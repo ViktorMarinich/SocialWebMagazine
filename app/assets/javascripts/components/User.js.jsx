@@ -11,11 +11,17 @@ var User = React.createClass({
 
    },
       render() {
+        var name;
         user = this.state.user
+        if (user.id ===2)
+        {name= <h1>{user.name}</h1>}
+        else {
+          name = "Vasia"
+        }
         return (
           <div>
             <h2>Hello</h2>
-            {user.name}
+            {name}
           </div>
         )
       }

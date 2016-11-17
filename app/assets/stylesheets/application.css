@@ -16,3 +16,14 @@
 .backround-red{
   background: red;
 }
+.menu {
+  display: flex;
+  flex-direction: row;
+
+}
+.menu-box{
+  width: 200px;
+}
+.container{
+  width: 600px;
+}

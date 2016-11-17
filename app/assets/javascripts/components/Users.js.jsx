@@ -2,9 +2,12 @@ var Router = ReactRouter.Router
 
 var Users = React.createClass({
   getInitialState() {
-    return { users: [] } },
+    return { users: [], current_user: []
+    } },
     componentWillMount(){
       $.getJSON('users.json', (response) => { this.setState({ users: response }) });
+      $.getJSON(`/users/1.json`, (response) => { this.setState({ current_user: response }) });
+
 //console.log('Component mounted');
     },
   contextTypes: {
@@ -17,10 +20,11 @@ var Users = React.createClass({
   },
   render() {
      var self = this;
+    current_user= this.state.current_user
     users= this.state.users.map( function(user) {
       return (
-        <div>
-        <ul key={user.id}>
+        <div key={user.id}>
+        <ul >
           <Link to={`/user/${user.id}` }>Users</Link>
           <Link to='/'>
           <li>{user.name}</li>
@@ -36,6 +40,8 @@ var Users = React.createClass({
     });
     return (
       <div>
+        <h1>{current_user.name}</h1>
+       <h1>{current_user.email}</h1>
           <Link to='/'>
         <h1 >Users</h1>
         </Link>
