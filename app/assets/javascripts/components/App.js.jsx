@@ -5,7 +5,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div className='menu'>
-        <div className='menu-box'>
+        <div className='menu-item'>
           <ul>
             <li>
               <Link to='/'>Profile</Link>
@@ -18,7 +18,7 @@ var App = React.createClass({
             </li>
           </ul>
         </div>
-        <div className="container">
+        <div className="menu-item-large">
           <RouteHandler {...this.props}/>
         </div>
       </div>
