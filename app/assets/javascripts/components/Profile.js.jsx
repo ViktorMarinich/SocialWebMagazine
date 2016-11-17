@@ -1,18 +1,16 @@
 var Profile = React.createClass({
   getInitialState() {
-    return { users: [], current_user: [], friends:[]
+    return { users: [], friends:[]
     } },
     componentWillMount(){
       $.getJSON('users.json', (response) => { this.setState({ users: response }) });
       $.getJSON(`/users/1.json`, (response) => {
-        this.setState({ current_user: response })
         this.setState({friends: response.friends})
     });
 
     },
 
   render: function() {
-    current_user= this.state.current_user
     friends = this.state.friends.map( function (friend) {
       return (
         <div>
@@ -26,7 +24,7 @@ return (
           <div>{current_user.name}</div>
           <img src="#" width='200' height='200'></img>
           <h1>Friends</h1>
-          <p>{friends}</p>
+          <div>{friends}</div>
         </div>
       </div>
     );
