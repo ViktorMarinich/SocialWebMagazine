@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 before_save :downcase_email
 before_create :confirmation_token
-#mount_uploader :image, ImageUploader
+mount_uploader :avatar, ImageUploader
 has_many :relationships,foreign_key: "user_id",class_name:  "Relationship", dependent: :destroy
 has_many :outcoming, through: :relationships,  source: :user
 has_many :reverse_relationships, foreign_key: "friend_id", class_name:  "Relationship", dependent: :destroy
