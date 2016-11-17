@@ -6,6 +6,6 @@ this.MyRoutes = (
     <DefaultRoute handler={Profile} />
     <Route handler={MyFriends} path='friends'/>
     <Route handler={Users} path='users'/>
-    <Route handler={User} path='user/:userId'/>
+    <Route handler={Profile} path='user/:userId'/>
   </Route>
 );

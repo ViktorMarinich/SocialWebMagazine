@@ -2,12 +2,12 @@ class User < ActiveRecord::Base
 before_save :downcase_email
 before_create :confirmation_token
 #mount_uploader :image, ImageUploader
-#has_many :relationships,foreign_key: "user_id",class_name:  "Relationship", dependent: :destroy
-#has_many :outcoming, through: :relationships,  source: :friend
-#has_many :reverse_relationships, foreign_key: "friend_id", class_name:  "Relationship", dependent: :destroy
-#has_many :incoming, through: :reverse_relationships, source: :user
-#has_many :friendships, dependent: :destroy
-#has_many :friends, through: :friendships
+has_many :relationships,foreign_key: "user_id",class_name:  "Relationship", dependent: :destroy
+has_many :outcoming, through: :relationships,  source: :user
+has_many :reverse_relationships, foreign_key: "friend_id", class_name:  "Relationship", dependent: :destroy
+has_many :incoming, through: :reverse_relationships, source: :friend
+has_many :friendships, dependent: :destroy
+has_many :friends, through: :friendships
 #has_many :galleries
 #has_one :wall
 #has_many :news

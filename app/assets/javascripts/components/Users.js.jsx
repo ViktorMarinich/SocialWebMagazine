@@ -20,9 +20,9 @@ var Users = React.createClass({
       return (
         <div key={user.id}>
             <ul >
-              <Link to={`/user/${user.id}` }>Users</Link>
+              <Link to={`/user/${user.id}` }>{user.name}</Link>
               <Link to='/'>
-              <li>{user.name}</li>
+              <li>{user.friends}</li>
               </Link>
               <li onClick={self.handleClick}>{user.email}</li>
               <li onClick={self.handleClick}>{user.id}</li>
