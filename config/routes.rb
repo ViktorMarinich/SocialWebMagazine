@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  get 'users' => 'users#all'
   root 'users#index'
-  get "/*path" => "application#index"
+
+#  get "/*path" => "application#index"
   resources :users, defaults: { format: 'json' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -12,6 +12,8 @@ var App = React.createClass({
               <Link to='/users'>Users</Link>
           </ul>
         </nav>
+        <div>
+        </div>
         <RouteHandler {...this.props}/>
       </div>
     );

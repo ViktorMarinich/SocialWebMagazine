@@ -4,12 +4,10 @@ var Profile = React.createClass({
       <div>
         <ul>
           <li>
-
+            <div>Hello {this.props.foo}!</div>
           </li>
         </ul>
-      <div>Hello {this.props.foo}!</div>
       </div>
-      
     );
   }
 });
