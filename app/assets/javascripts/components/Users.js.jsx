@@ -3,7 +3,7 @@ var Router = ReactRouter.Router
 var Users = React.createClass({
   getInitialState() {
     return { users: [] } },
-    componentDidMount(){
+    componentWillMount(){
       $.getJSON('users.json', (response) => { this.setState({ users: response }) });
 //console.log('Component mounted');
     },
