@@ -30,11 +30,7 @@ var User = React.createClass({
         current_user= this.state.current_user
         user = this.state.user
         friends = this.state.friends.map( function (friend) {
-          return (
-            <div>
-              <h1><Link to={`/user/${friend.id}` }>{friend.name}</Link></h1>
-              <h1>{friend.email}</h1>
-            </div> );
+          return <Friendel id={friend.id} name={friend.name}/>
         })
 
       return  (
@@ -43,11 +39,13 @@ var User = React.createClass({
                  <div>{current_user.name}</div>
                    <div>{user.email}</div>
                  <div>{user.name}</div>
-                 <img src="#" width='200' height='200'></img>
+                 <div className="friend-img">
+                   <img src="/uploads/user/avatar/203/1.jpg" width='200' height='200'></img>
+                 </div>
                    <Link to={`/user/209` }>209</Link>
                  <Link to={`/user/202` }>202</Link>
                  <h1>Friends</h1>
-                 <div>{friends}</div>
+                   <div className='flex-box'>{friends}</div>
                </div>
              </div>
            );
