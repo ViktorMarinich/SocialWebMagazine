@@ -9,9 +9,34 @@ var App = React.createClass({
       $.getJSON(`/users/100.json`, (response) => {
         this.setState({ current_user: response }) });
     },
+    handleLogin() {
+//var name = this.refs.name.value;
+            var email = this.refs.email.value;
+
+        //    var description = this.refs.description.value;
+      //      var user = { name: name , email: email};
+            $.ajax({
+                    url: `/sessions`,
+                    type: 'POST',
+                    data: { session: {email: this.refs.email.value , password: this.refs.password.value}
+                    },
+                    success: (response)=>{
+                      console.log(response)
+                    //this.handleUpdateNews(response);
+                    },
+                    error: (response)=>{
+                      console.log(response.responseText)
+                    }
+                });
+
+    //    console.log(name)
+        console.log(email)
+
+    },
+
   render: function() {
-    current_user= this.state.current_user
-    return (
+    if (false) {
+      menu = (
       <div className='menu'>
         <div className='menu-item'>
           <ul>
@@ -33,6 +58,17 @@ var App = React.createClass({
           <RouteHandler {...this.props}/>
         </div>
       </div>
+    )} else {
+    menu= (
+      <div>
+        <input type='text' ref='email'  />
+        <input type='password' ref='password'  />
+        <button onClick={this.handleLogin}>Sign In</button>
+      </div>)
+    }
+    current_user= this.state.current_user
+    return (
+      menu
     );
   }
 });

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 #  resources :news
   resources :relationships
   resources :friendships
+  resources :sessions
     get "/*path" => "application#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
