@@ -66,12 +66,53 @@ var User = React.createClass({
                 }
             });
       },
+      handleAdd(user) {
+        console.log(user)
+          $.ajax({
+                  url: `/relationships`,
+                  type: 'POST',
+                  data: { id: this.state.user.id, user: user
+                  },
+                  success: (response)=>{
+                    console.log(response)
+                  this.handleUpdateNews(response);
+                  },
+                  error: (response)=>{
+                    console.log(response.responseText)
+                  }
+              });
+        },
+        handleRemove(user) {
+          console.log(user.target)
+          $.ajax({
+                  url: `/users/${this.state.user.id}`,
+                  type: 'PATCH',
+                  data: { id: this.state.user.id, user: user
+                  },
+                  success: (response)=>{
+                    console.log(response)
+                  this.handleUpdateNews(response);
+                  },
+                  error: (response)=>{
+                    console.log(response.responseText)
+                  }
+              });
+
+          },
   render() {
-    current_user= this.state.current_user
-    user = this.state.user
+    var current_user= this.state.current_user
+    var user = this.state.user
+    var index = 0
     friends = this.state.friends.map( function (friend) {
+      if (friend.id == current_user.id){
+        index = 1 } else if(user.id == current_user.id) {
+        index = 2
+        }
       return <Friendel key={friend.id} id={friend.id} name={friend.name}/>
     })
+    var add = ( index > 0) ? '':<button onClick={this.handleAdd}>Add to friends</button>
+  var remove= (index  == 1) ? <button onClick={this.handleRemove}>Remove friends</button> : ''
+
     var newsSorted = this.state.news.sort(  function(a, b) {
       if (a.id > b.id) { return -1;}
       if (a.id < b.id) { return 1; }
@@ -90,6 +131,8 @@ var User = React.createClass({
             <div className="friend-img">
               <img src="/uploads/user/avatar/203/1.jpg" width='200' height='200'></img>
             </div>
+            {add}
+            {remove}
             <h1>Friends</h1>
               <div className='flex-box'>{friends}</div>
           </div>

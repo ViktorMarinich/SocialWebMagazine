@@ -21,7 +21,7 @@ class UsersController < ApplicationController
           respond_to do |format|
             format.json do
               if @user.save
-                render :json => @employee
+                render :json => @user
               else
                 render :json => { :errors => @user.errors.messages }, :status => 422
               end
