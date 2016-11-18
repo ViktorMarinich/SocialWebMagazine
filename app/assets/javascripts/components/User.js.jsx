@@ -1,6 +1,6 @@
 var User = React.createClass({
   getInitialState() {
-    return { user: [], current_user: [], friends:[], news: [] } },
+    return { user: [], current_user: [], friends:[], news: [] ,wall:[]} },
     componentWillReceiveProps(nextProps) {
       console.log(nextProps.params)
       console.log(this.props.params)
@@ -9,6 +9,7 @@ var User = React.createClass({
          this.setState({ user: response })
          this.setState({ friends: response.friends })
          this.setState({ news: response.wall.news })
+         this.setState({ wall: response.wall })
        });
 
 
@@ -20,13 +21,39 @@ var User = React.createClass({
          this.setState({friends: response.friends})
          this.setState({ news: response.wall.news })
        });
-      $.getJSON(`/users/1.json`, (response) => {
+      $.getJSON(`/users/100.json`, (response) => {
         this.setState({ current_user: response })
     });
       //  this.setState({user: this.props.params.userId})
 
 
    },
+   handleSubmit( news) {
+    // var newState = this.state.news.concat(news);
+  //   this.setState({ news: newState })
+     $.getJSON(`/users/${this.props.params.userId}.json`, (response) => {
+      //  this.setState({ user: response })
+      //  this.setState({friends: response.friends})
+        this.setState({ news: response.wall.news })
+      });
+   },
+   handleClick() {
+      var text = this.refs.text.value;
+      console.log(text)
+      $.ajax({ url: '/news',
+        type: 'POST',
+        data: { id: this.state.user.id,
+          news: { text: text, user_id: this.state.current_user.id ,wall_id:  this.state.wall.id } },
+        success: (item) => {
+          console.log(item)
+        this.handleSubmit(news);
+        },
+        error: (item)=>{
+          console.log(item.responseText)
+        }
+      });
+       },
+
       render() {
         current_user= this.state.current_user
         user = this.state.user
@@ -44,8 +71,7 @@ var User = React.createClass({
                  <div>{current_user.name}</div>
                    <div>{user.email}</div>
                  <div>{user.name}</div>
-                   <div>News</div>
-                   <div >{news}</div>
+
                  <div className="friend-img">
                    <img src="/uploads/user/avatar/203/1.jpg" width='200' height='200'></img>
                  </div>
@@ -56,7 +82,12 @@ var User = React.createClass({
                </div>
              </div>
              <div className="menu-item-medium inline-block">
-
+               <div>News</div>
+                 <div>
+                 <input ref='text' placeholder='Type yours comment' />
+                 <button onClick={this.handleClick}>Submit</button>
+                </div>
+               <div >{news}</div>
                </div>
              </div>
            );

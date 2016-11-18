@@ -17,16 +17,17 @@ class UsersController < ApplicationController
        render json: @users.to_json
      end
         def create
+
           @user = User.new(user_params)
-          if @user.save
-      #      Wall.create(user: @user)
-      #      Gallery.create(user: @user)
-      #      UserMailer.registration_confirmation(@user).deliver_now
-      #        sign_in @user
-            redirect_to user_path(@user)
-          else
-            render :new
+          respond_to do |format|
+          format.json do
+            if @user.save
+              render :json => @employee
+            else
+              render :json => { :errors => @user.errors.messages }, :status => 422
+            end
           end
+        end
         end
 
     #    def search
