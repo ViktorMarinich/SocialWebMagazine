@@ -6,7 +6,7 @@ var User = React.createClass({
     $.getJSON(`/users/${nextProps.params.userId}.json`,(response) => {
        this.setState({ user: response })
        this.setState({ friends: response.friends })
-       this.setState({ news: response.wall.news.reverse()})
+       this.setState({ news: response.wall.news})
        this.setState({ wall: response.wall })
      });
   },
@@ -14,17 +14,17 @@ var User = React.createClass({
     $.getJSON(`/users/${this.props.params.userId}.json`, (response) => {
        this.setState({ user: response })
        this.setState({friends: response.friends})
-       this.setState({ news: response.wall.news.reverse() })
+       this.setState({ news: response.wall.news })
     });
     $.getJSON(`/users/100.json`, (response) => {
       this.setState({ current_user: response })
     });
   },
-  handleSubmit( news) {
-    $.getJSON(`/users/${this.props.params.userId}.json`, (response) => {
-       this.setState({ news: response.wall.news.reverse() })
+  handleSubmit( response) {
+    var news = this.state.news
+    news.push(response)
+    this.setState({news: news})
        this.refs.text.value=''
-    });
   },
   handleClick() {
     var text = this.refs.text.value;
@@ -72,7 +72,11 @@ var User = React.createClass({
     friends = this.state.friends.map( function (friend) {
       return <Friendel key={friend.id} id={friend.id} name={friend.name}/>
     })
-    news = this.state.news.map( function (news) {
+    var newsSorted = this.state.news.sort(  function(a, b) {
+      if (a.id > b.id) { return -1;}
+      if (a.id < b.id) { return 1; }
+      return 0; })
+      news =newsSorted.map( function (news) {
       return <News key={news.id} id={news.user_id} user_name={news.user_name} text={news.text} />
     })
 
