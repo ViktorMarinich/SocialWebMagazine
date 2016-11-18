@@ -7,6 +7,8 @@ var User = React.createClass({
       console.log(this.props.params.userId)
       $.getJSON(`/users/${nextProps.params.userId}.json`, (response) => {
          this.setState({ user: response })
+         this.setState({ friends: response.friends })
+
        });
 
 
@@ -43,7 +45,7 @@ var User = React.createClass({
                  <div>{user.name}</div>
                  <img src="#" width='200' height='200'></img>
                    <Link to={`/user/209` }>209</Link>
-                 <Link to={`/user/207` }>207</Link>
+                 <Link to={`/user/202` }>202</Link>
                  <h1>Friends</h1>
                  <div>{friends}</div>
                </div>
