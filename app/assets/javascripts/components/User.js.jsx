@@ -1,6 +1,6 @@
 var User = React.createClass({
   getInitialState() {
-    return { user: [], current_user: [], friends:[] } },
+    return { user: [], current_user: [], friends:[], news: [] } },
     componentWillReceiveProps(nextProps) {
       console.log(nextProps.params)
       console.log(this.props.params)
@@ -8,7 +8,7 @@ var User = React.createClass({
       $.getJSON(`/users/${nextProps.params.userId}.json`, (response) => {
          this.setState({ user: response })
          this.setState({ friends: response.friends })
-
+         this.setState({ news: response.wall.news })
        });
 
 
@@ -32,6 +32,12 @@ var User = React.createClass({
         friends = this.state.friends.map( function (friend) {
           return <Friendel key={friend.id} id={friend.id} name={friend.name}/>
         })
+        news = this.state.news.map( function (news) {
+          return <div>
+                  <h4>{news.user_name}</h4>
+                  {news.text}
+                </div>
+        })
 
       return  (
              <div className='menu-item-medium'>
@@ -42,11 +48,14 @@ var User = React.createClass({
                  <div className="friend-img">
                    <img src="/uploads/user/avatar/203/1.jpg" width='200' height='200'></img>
                  </div>
+                 <div>News</div>
+                 <div>{news}</div>
                    <Link to={`/user/209` }>209</Link>
                  <Link to={`/user/202` }>202</Link>
                  <h1>Friends</h1>
                    <div className='flex-box'>{friends}</div>
                </div>
+
              </div>
            );
       }

@@ -9,8 +9,8 @@ has_many :incoming, through: :reverse_relationships, source: :friend
 has_many :friendships, dependent: :destroy
 has_many :friends, through: :friendships
 #has_many :galleries
-#has_one :wall
-#has_many :news
+has_one :wall
+has_many :news
 #validates :email, presence: true, uniqueness: {case_sensitive: false}, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}
 #validates :password , length: { minimum: 4 }
 #validates :name, presence: true, length: { minimum: 4 }
