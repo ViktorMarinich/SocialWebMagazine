@@ -19,8 +19,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-#News.delete_all
-#Wall.delete_all
+News.delete_all
+Wall.delete_all
 #Gallery.delete_all
 Relationship.delete_all
 Friendship.delete_all
@@ -31,8 +31,8 @@ User.create(name:"Mister#{n}", email: "#{n+1}@ukr.net", password: "aaaa",passwor
 else
   User.create(name:"Mister#{n}", email: "#{n+1}@ukr.net", password: "aaaa",password_confirmation: "aaaa")
 end
-#user= User.last
-#Wall.create(user: user)
+user= User.last
+Wall.create(user: user)
 end
 User.all.each do |n|
   User.first.friendships.new(friend: n).save unless User.first == n
