@@ -17,17 +17,16 @@ class UsersController < ApplicationController
        render json: @users.to_json
      end
         def create
-
           @user = User.new(user_params)
           respond_to do |format|
-          format.json do
-            if @user.save
-              render :json => @employee
-            else
-              render :json => { :errors => @user.errors.messages }, :status => 422
+            format.json do
+              if @user.save
+                render :json => @employee
+              else
+                render :json => { :errors => @user.errors.messages }, :status => 422
+              end
             end
           end
-        end
         end
 
     #    def search
@@ -51,17 +50,27 @@ class UsersController < ApplicationController
     #    end
 
         def update
-          if @user.update_attributes(user_params)
-            redirect_to  user_path(@user)
-          else
-            @user.name=params[:user][:name]
-            @user.first_name=params[:user][:first_name]
-            @user.last_name=params[:user][:last_name]
-            @user.city=params[:user][:city]
-            @user.image=params[:user][:image] unless params[:user][:image].nil?
-            @user.save(validate: false)
-            redirect_to user_path(@user)
+          @user = User.find(params[:id])
+          respond_to do |format|
+            format.json do
+              if @user.update(user_params)
+                render :json => @user
+              else
+                render :json => { :errors => @user.errors.messages }, :status => 422
+              end
+            end
           end
+          #if @user.update_attributes(user_params)
+          #  redirect_to  user_path(@user)
+        #  else
+        #    @user.name=params[:user][:name]
+        #    @user.first_name=params[:user][:first_name]
+        #    @user.last_name=params[:user][:last_name]
+        #    @user.city=params[:user][:city]
+        #    @user.image=params[:user][:image] unless params[:user][:image].nil?
+        #    @user.save(validate: false)
+        #    redirect_to user_path(@user)
+        #  end
         end
 
         def show

@@ -9,7 +9,7 @@ var Settings = React.createClass({
 
         //    var description = this.refs.description.value;
             var user = { name: name , email: email};
-            this.props.handleUpdate(item);
+            this.props.handleUpdate(user);
         console.log(name)
         console.log(email)
         }

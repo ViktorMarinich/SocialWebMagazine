@@ -43,18 +43,29 @@ var User = React.createClass({
       }
     });
   },
-
+  handleUpdateNews(response) {
+      var user = response
+      this.setState({user: user})
+      if (user.id == current_user.id) {
+        this.setState({current_user: user})
+      }
+  },
     handleUpdate(user) {
+      console.log(user)
         $.ajax({
-                url:
-                type: 'PUT',
-                data: { user: user
+                url: `/users/${this.state.user.id}`,
+                type: 'PATCH',
+                data: { id: this.state.user.id, user: user
                 },
-                success: () => {
-
+                success: (response)=>{
+                  console.log(response)
+                this.handleUpdateNews(response);
+                },
+                error: (response)=>{
+                  console.log(response.responseText)
                 }
-            }
-        )},
+            });
+      },
   render() {
     current_user= this.state.current_user
     user = this.state.user
@@ -83,7 +94,7 @@ var User = React.createClass({
           <div>Profile Info</div>
           <div>
             <div>
-              <Settings key={user.id} name={user.name} email={user.email} />
+              <Settings key={user.id} name={user.name} email={user.email} handleUpdate={this.handleUpdate}/>
             </div>
           </div>
           <div>News</div>
