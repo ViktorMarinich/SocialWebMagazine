@@ -1,15 +1,11 @@
-var Friendel = React.createClass({
+var News = React.createClass({
     render: function() {
         return (
                 <div className="news">
-                    <Link to={`/user/${this.props.id}` }>
-                   <div className="friend-img">
-                    <img src="/uploads/user/avatar/203/1.jpg" width='50' height='50'></img>
-                   </div >
-                    <div className="friend-name">
-                    {this.props.name}
-                    </div>
-                    </Link>
+                  <div>
+                  <h4><Link to={`/user/${this.props.id}`}>{this.props.user_name}</Link></h4>
+                                <h5>{this.props.text}</h5>
+                  </div>
                 </div>
         );
     }
