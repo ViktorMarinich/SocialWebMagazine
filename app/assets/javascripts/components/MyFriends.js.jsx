@@ -1,9 +1,13 @@
 var MyFriends = React.createClass({
-  render: function() {
+  render() {
+  
     return (
       <div>
         My friends
         <h1>{current_user.name}</h1>
+        <div>
+
+        </div>
       </div>
     );
   }

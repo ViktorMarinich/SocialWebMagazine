@@ -16,7 +16,7 @@ var App = React.createClass({
         <div className='menu-item'>
           <ul>
             <li>
-              <Link to='/users'>{current_user.name}</Link>
+              <Link to={`/user/${current_user.id}`}>{current_user.name}</Link>
             </li>
             <li>
               <Link to='/'>My friends</Link>

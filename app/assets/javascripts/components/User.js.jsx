@@ -30,7 +30,7 @@ var User = React.createClass({
         current_user= this.state.current_user
         user = this.state.user
         friends = this.state.friends.map( function (friend) {
-          return <Friendel id={friend.id} name={friend.name}/>
+          return <Friendel key={friend.id} id={friend.id} name={friend.name}/>
         })
 
       return  (
