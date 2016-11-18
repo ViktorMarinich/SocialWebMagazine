@@ -4,7 +4,7 @@ var Profile = React.createClass({
     } },
     componentWillMount(){
       $.getJSON('users.json', (response) => { this.setState({ users: response }) });
-      $.getJSON(`/users/1.json`, (response) => {
+      $.getJSON(`/users/100.json`, (response) => {
         this.setState({friends: response.friends})
     });
 

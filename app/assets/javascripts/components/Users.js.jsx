@@ -6,7 +6,7 @@ var Users = React.createClass({
     } },
     componentWillMount(){
       $.getJSON('users.json', (response) => { this.setState({ users: response }) });
-      $.getJSON(`/users/1.json`, (response) => { this.setState({ current_user: response }) });
+      $.getJSON(`/users/100.json`, (response) => { this.setState({ current_user: response }) });
     },
 
   handleClick(e){

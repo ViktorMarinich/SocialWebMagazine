@@ -43,6 +43,18 @@ var User = React.createClass({
       }
     });
   },
+
+    handleUpdate(user) {
+        $.ajax({
+                url:
+                type: 'PUT',
+                data: { user: user
+                },
+                success: () => {
+
+                }
+            }
+        )},
   render() {
     current_user= this.state.current_user
     user = this.state.user
@@ -52,6 +64,7 @@ var User = React.createClass({
     news = this.state.news.map( function (news) {
       return <News key={news.id} id={news.user_id} user_name={news.user_name} text={news.text} />
     })
+
     return  (
       <div className="flex-box">
         <div className='menu-item-medium inline-block'>
@@ -67,6 +80,12 @@ var User = React.createClass({
           </div>
         </div>
         <div className="menu-item-medium inline-block">
+          <div>Profile Info</div>
+          <div>
+            <div>
+              <Settings key={user.id} name={user.name} email={user.email} />
+            </div>
+          </div>
           <div>News</div>
             <div>
               <input ref='text' placeholder='Type yours comment' />

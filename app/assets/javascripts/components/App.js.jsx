@@ -6,7 +6,7 @@ var App = React.createClass({
     return { current_user: []
     } },
     componentWillMount(){
-      $.getJSON(`/users/1.json`, (response) => {
+      $.getJSON(`/users/100.json`, (response) => {
         this.setState({ current_user: response }) });
     },
   render: function() {
