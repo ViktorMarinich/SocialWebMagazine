@@ -1,17 +1,19 @@
 var User = React.createClass({
   getInitialState() {
-    return { user: [], friends:[],current_user: this.props.current_user, news: [] ,wall:[]}
+    return { user: [], friends:[],current_user: this.props.current_user, news: [],img: [] ,wall:[]}
   },
   componentWillReceiveProps(nextProps) {
     $.getJSON(`/users/${nextProps.params.userId}.json`,(response) => {
        this.setState({ user: response })
        this.setState({ friends: response.friends })
        this.setState({ news: response.wall.news})
+       this.setState({ img: response.avatar})
        this.setState({ wall: response.wall })});
   },
   componentWillMount(nextProps) {
     $.getJSON(`/users/${this.props.params.userId}.json`, (response) => {
        this.setState({ user: response })
+       this.setState({ img: response.avatar})
        this.setState({friends: response.friends})
        this.setState({ news: response.wall.news })});
   },
@@ -80,7 +82,7 @@ var User = React.createClass({
       else if(user.id == current_user.id) {
         index = 2
       }
-      return <Friendel key={friend.id} id={friend.id} name={friend.name}/>
+      return <Friendel key={friend.id} url={friend.avatar.url} id={friend.id} name={friend.name}/>
     })
     var add = ( index > 0) ? '':<button onClick={this.handleAdd}>Add to my friends</button>
     var remove= (index  == 1) ? <button onClick={this.handleRemove}>Remove from my friendlist</button> : ''
@@ -89,8 +91,9 @@ var User = React.createClass({
       if (a.id < b.id) { return 1; }
       return 0; })
     news =newsSorted.map( function (news) {
-      return <News key={news.id} id={news.user_id} user_name={news.user.name} text={news.text} />
+      return <News key={news.id} id={news.user_id} user_name={news.user_name} text={news.text} />
     })
+    var avatar = (typeof this.state.user.avatar!='undefined')? <img src={this.state.user.avatar.url} width='200' height='200'></img> : ""
     return(
       <div className="flex-box">
         <div className='menu-item-medium inline-block'>
@@ -100,7 +103,7 @@ var User = React.createClass({
               <div>{user.email}</div>
             <div>{user.name}</div>
             <div className="friend-img">
-              <img src="/uploads/user/avatar/203/1.jpg" width='200' height='200'></img>
+              {avatar}
             </div>
             {add}
             {remove}

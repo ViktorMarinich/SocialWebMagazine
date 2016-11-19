@@ -4,7 +4,7 @@ var Friendel = React.createClass({
       <div className="friend">
           <Link to={`/user/${this.props.id}` }>
          <div className="friend-img">
-          <img src="/uploads/user/avatar/203/1.jpg" width='50' height='50'></img>
+          <img src={(typeof this.props.url!='undefined')? this.props.url  : "goodbye"} width='50' height='50'></img> 
          </div >
           <div className="friend-name">
             {this.props.name}
