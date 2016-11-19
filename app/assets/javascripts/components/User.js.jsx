@@ -1,7 +1,8 @@
 var User = React.createClass({
   getInitialState() {
-    return { user: [], current_user: [], friends:[], news: [] ,wall:[]}
+    return { user: [], friends:[],current_user: this.props.current_user, news: [] ,wall:[]}
   },
+
   componentWillReceiveProps(nextProps) {
     $.getJSON(`/users/${nextProps.params.userId}.json`,(response) => {
        this.setState({ user: response })
@@ -16,9 +17,9 @@ var User = React.createClass({
        this.setState({friends: response.friends})
        this.setState({ news: response.wall.news })
     });
-    $.getJSON(`/users/100.json`, (response) => {
-      this.setState({ current_user: response })
-    });
+    //$.getJSON(`/users/currentuser.json`, (response) => {
+    //  this.setState({ current_user: response })
+    //});
   },
   handleSubmit( response) {
     var news = this.state.news
@@ -32,7 +33,8 @@ var User = React.createClass({
     $.ajax({ url: '/news',
       type: 'POST',
       data: { id: this.state.user.id,
-      news: { text: text, user_id: this.state.current_user.id ,
+      news: { text: text,
+        //user_id: this.state.current_user.id ,
       wall_id:  this.state.wall.id } },
       success: (response) => {
         console.log(response)
@@ -46,9 +48,9 @@ var User = React.createClass({
   handleUpdateNews(response) {
       var user = response
       this.setState({user: user})
-      if (user.id == current_user.id) {
-        this.setState({current_user: user})
-      }
+      //if (user.id == current_user.id) {
+    //    this.setState({current_user: user})
+    //  }
   },
     handleUpdate(user) {
       console.log(user)
@@ -100,7 +102,7 @@ var User = React.createClass({
 
           },
   render() {
-    var current_user= this.state.current_user
+  //  var current_user= this.state.current_user
     var user = this.state.user
     var index = 0
     friends = this.state.friends.map( function (friend) {
@@ -124,6 +126,7 @@ var User = React.createClass({
     return  (
       <div className="flex-box">
         <div className='menu-item-medium inline-block'>
+          <h1>Works or works {current_user.name}</h1>
           <div className='container'>
             <div>{current_user.name}</div>
               <div>{user.email}</div>

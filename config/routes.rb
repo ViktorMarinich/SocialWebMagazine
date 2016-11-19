@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   get 'users' => 'users#all'
+  get 'users/current' => 'users#current'
   root 'users#index'
 
   #
-  resources :users
+  resources :users, defaults: {format: :json}
   resources :news
 #  resources :news
   resources :relationships

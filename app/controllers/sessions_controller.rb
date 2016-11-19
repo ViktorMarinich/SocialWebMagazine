@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
  def new
    @user=User.new
    if user_signed_in?
-     redirect_to user_path(current_user)
+     redirect_to root_path
    end
  end
 
@@ -14,14 +14,11 @@ class SessionsController < ApplicationController
          remember_me(user)
        end
        sign_in user
-       render :json => current_user
+       redirect_to root_path
 
     else
       render :json => { :errors => 'failed' }, :status => 422
     end
- end
-
- def shadow
  end
 
  def destroy

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 before_save :downcase_email
+after_save :create_wall
 before_create :confirmation_token
 mount_uploader :avatar, ImageUploader
 has_many :relationships,foreign_key: "user_id",class_name:  "Relationship", dependent: :destroy
@@ -18,6 +19,9 @@ has_many :news
 #validates :last_name, presence: true, length: { minimum: 3 }
 has_secure_password
 
+def create_wall
+  Wall.create(user_id: self.id)
+end
 
 def all_news
 x= self.friend_ids

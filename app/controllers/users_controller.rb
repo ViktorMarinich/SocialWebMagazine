@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   #    before_action :authenticate, except: [:new, :create, :search, :email_find, :update]
 
         def new
-          @user = User.new
         end
 
     #    def all
@@ -16,17 +15,29 @@ class UsersController < ApplicationController
        @users = User.all
        render json: @users.to_json
      end
+
+     def current
+       @user = current_user
+       render json: @user
+     end
+
         def create
-          @user = User.new(user_params)
-          respond_to do |format|
-            format.json do
-              if @user.save
-                render :json => @user
-              else
-                render :json => { :errors => @user.errors.messages }, :status => 422
-              end
+          unless user_signed_in?
+            @user = User.new(user_params)
+            if @user.save
+              sign_in @user
+              redirect_to root_path
             end
           end
+          #respond_to do |format|
+          #  format.json do
+          #    if @user.save
+          #      render :json => @user
+          #    else
+          #      render :json => { :errors => @user.errors.messages }, :status => 422
+          #    end
+          #  end
+          #end
         end
 
     #    def search

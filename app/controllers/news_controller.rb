@@ -9,7 +9,7 @@ class NewsController < ApplicationController
     @user=User.find(params[:id])
     @wall=@user.wall
     @news=@wall.news.new(news_params)
-    User.find(100).news << @news
+    current_user.news << @news
     respond_to do |format|
     format.json do
       if @news.save
