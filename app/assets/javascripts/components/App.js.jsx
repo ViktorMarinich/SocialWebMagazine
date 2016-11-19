@@ -11,10 +11,8 @@ var App = React.createClass({
     },
   signOut(){
     $.ajax({
-            url: `/sessions/${this.state.current_user.id}`,
-            type: 'DELETE',
-            data: { session: {id: this.state.current_user.id}
-            },
+            url: `/users/logout`,
+            type: 'GET',
             success: (response)=>{
               console.log(response)
             this.handleUpdateNews(response);
@@ -42,7 +40,7 @@ var App = React.createClass({
             <li>
               <Link to='/users'>Users</Link>
             </li>
-            <a href='/' onClick={this.signOut}>Sign Out</a>
+            <a href='/users/logout'>Sign Out</a>
           </ul>
         </div>
         <div className="menu-item-large">

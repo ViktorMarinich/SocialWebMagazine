@@ -7,18 +7,15 @@
     <h1 class="align-center">Sign in</h1>
     <%= form_for(:session, url: sessions_path, id: "new-form") do |f| %>
       <p><%= f.label :email %></br>
-      <%= f.email_field :email, class: ' ', id: 'email'%></p>
+      <%= f.text_field :email, class: ' ', id: 'email'%></p>
       <p><%= f.label :password %></br>
       <%= f.password_field :password, class: ' ', id: 'password'%></p>
       <p><%= f.label :remember_me, class: "checkbox inline" do %>
-        <%= f.check_box :remember_me %></p>
-        <span>Remember me on this computer</span>
       <% end %>
       <p class="align-center">
         <%= f.submit "Log in", class: " ", id: 'login'%>
       </p>
     <% end %>
-    <p>New user? <span><%=link_to 'Sign Up', new_user_path ,id: 'Sign Up'%><span></p>
   </div>
   <div class="form width240 inline-block vertical-top">
   <h1 class="align-center">Sign Up</h1>

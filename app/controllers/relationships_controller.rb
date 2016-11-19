@@ -4,7 +4,7 @@ class RelationshipsController < ApplicationController
 
   def create
     friend = User.find(params[:friend_id])
-    @request = User.find(100).relationships.new(friend: friend)
+    @request = current_user.relationships.new(friend: friend)
     respond_to do |format|
       format.json do
         if @request.save

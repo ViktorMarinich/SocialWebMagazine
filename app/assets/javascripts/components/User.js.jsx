@@ -68,36 +68,44 @@ var User = React.createClass({
                 }
             });
       },
+      handleAddFriends(response){
+        var friends=this.state.friends
+        //    console.log(friends)
+              friends.push(response)
+        //    this.setState({friends: friends})
+        //var friends= this.state.friends.filter(function(friend){return friend.id!=response.user_id})
+         this.setState({friends: friends})
+      },
       handleAdd(user) {
         console.log(user)
           $.ajax({
-                  url: `/relationships`,
+                  url: `/friend/add`,
                   type: 'POST',
-                  data: { id: this.state.user.id, user: user
+                  data: { friend_id: this.state.user.id
                   },
                   success: (response)=>{
                     console.log(response)
-                  this.handleUpdateNews(response);
+                  this.handleAddFriends(response);
                   },
                   error: (response)=>{
-                    console.log(response.responseText)
+                    console.log(response)
                   }
               });
+        },
+        handleRemoveFriends(response){
+          var friends= this.state.friends.filter(function(friend){return friend.id!=response.user_id})
+           this.setState({friends: friends})
         },
         handleRemove(user) {
           console.log(user.target)
           $.ajax({
-                  url: `/users/${this.state.user.id}`,
-                  type: 'PATCH',
-                  data: { id: this.state.user.id, user: user
-                  },
+                  url: `/friend/remove`,
+                  type: 'POST',
+                  data: { id: this.state.user.id },
                   success: (response)=>{
+                    this.handleRemoveFriends(response)
                     console.log(response)
-                  this.handleUpdateNews(response);
                   },
-                  error: (response)=>{
-                    console.log(response.responseText)
-                  }
               });
 
           },
@@ -112,8 +120,8 @@ var User = React.createClass({
         }
       return <Friendel key={friend.id} id={friend.id} name={friend.name}/>
     })
-    var add = ( index > 0) ? '':<button onClick={this.handleAdd}>Add to friends</button>
-  var remove= (index  == 1) ? <button onClick={this.handleRemove}>Remove friends</button> : ''
+    var add = ( index > 0) ? '':<button onClick={this.handleAdd}>Add to my friends</button>
+  var remove= (index  == 1) ? <button onClick={this.handleRemove}>Remove from my friendlist</button> : ''
 
     var newsSorted = this.state.news.sort(  function(a, b) {
       if (a.id > b.id) { return -1;}

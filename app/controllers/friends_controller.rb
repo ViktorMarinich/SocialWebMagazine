@@ -12,12 +12,13 @@ class FriendsController < ApplicationController
       rel = @user.relationships.find_by(friend_id: current_user)
       rel.destroy if rel
     end
-    redirect_to user_path(current_user)
+    render json: current_user
   end
 
-  def destroy
-    @user = User.find(params[:id])
-    friend = current_user.friendships.find_by(friend: params[:id])
-    friend.destroy if friend
+  def remove
+    friendships = current_user.friendships.find_by(friend: params[:id])
+    if friendships.destroy
+      render json: friendships
+    end
   end
 end

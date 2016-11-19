@@ -29,11 +29,7 @@ module ApplicationHelper
 
   def sign_out
     return false unless user_signed_in?
-    current_user.update_attribute(:remember_digest,nil)
-    cookies.delete(:user_id)
-    cookies.delete(:remember_token)
-    session.delete(:user_id)
-    current_user = nil
+    session[:user_id] = nil
   end
 
   def remember_me(user)

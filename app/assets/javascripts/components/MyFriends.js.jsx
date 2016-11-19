@@ -1,14 +1,21 @@
 var MyFriends = React.createClass({
+  getInitialState() {
+    return { friends:[]}
+  },
+  componentWillMount() {
+    $.getJSON(`/users/current.json`, (response) => {
+       this.setState({friends: response.friends})
+    });},
+    
   render() {
+    friends = this.state.friends.map( function (friend) {
+      return <Friendel key={friend.id} id={friend.id} name={friend.name}/>
+    })
   var x = this.props.current_user
     return (
       <div>
         My friends
-//        <h1>{current_user.name}</h1>
-        {x.name}
-        <div>
-
-        </div>
+        <div className='flex-box'>{friends}</div>
       </div>
     );
   }

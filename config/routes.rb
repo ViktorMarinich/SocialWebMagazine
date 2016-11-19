@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'users' => 'users#all'
   get 'users/current' => 'users#current'
+  get 'users/logout' => 'sessions#logout'
+  post 'friend/remove' => 'friends#remove'
+  post 'friend/add' => 'friends#create'
   root 'users#index'
 
   #
