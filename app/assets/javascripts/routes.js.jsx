@@ -5,7 +5,7 @@ this.MyRoutes = (
   <Route handler={App}>
     <DefaultRoute handler={MyFriends} />
     <Route handler={Users} path='users'/>
-    <Route handler={Profile} path='profile'/>
+    <Route handler={AllNews} path='news'/>
     <Route handler={User} path='user/:userId'/>
   </Route>
 );

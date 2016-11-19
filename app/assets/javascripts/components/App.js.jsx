@@ -35,7 +35,7 @@ var App = React.createClass({
               <Link to='/'>My friends</Link>
             </li>
             <li>
-              <Link to='/profile'>Profile</Link>
+              <Link to='/news'>News</Link>
             </li>
             <li>
               <Link to='/users'>Users</Link>

@@ -2,7 +2,9 @@ class NewsController < ApplicationController
 #  before_action :authenticate
 
   def index
-    @news = current_user.wall.news.order(created_at: :DESC).page(params[:page])
+    @news = News.where(wall_id: Wall.where(user_id: current_user.all_news))
+    render json: @news.to_json( :include => [{:user=>{:only => [:name,:email,:id, :avatar]}}])
+    #@user.to_json( :include => [{:friends => {:only => [:name,:email,:id, :avatar]}}])
   end
 
   def create
