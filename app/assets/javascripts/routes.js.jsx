@@ -3,9 +3,9 @@ var Route = ReactRouter.Route,
 
 this.MyRoutes = (
   <Route handler={App}>
-    <DefaultRoute handler={MyFriends} />
+    <DefaultRoute handler={AllNews} />
     <Route handler={Users} path='users'/>
-    <Route handler={AllNews} path='news'/>
+    <Route handler={MyFriends} path='friends'/>
     <Route handler={User} path='user/:userId'/>
   </Route>
 );

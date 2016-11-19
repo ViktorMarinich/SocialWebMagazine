@@ -3,24 +3,24 @@ var RouteHandler = ReactRouter.RouteHandler,
 
 var App = React.createClass({
   getInitialState() {
-    return { current_user: []
-    } },
-    componentWillMount(){
-      $.getJSON(`/users/current.json`, (response) => {
-        this.setState({ current_user: response }) });
-    },
+    return { current_user: [] }
+  },
+  componentWillMount(){
+    $.getJSON(`/users/current.json`, (response) => {
+      this.setState({ current_user: response }) });
+  },
   signOut(){
     $.ajax({
-            url: `/users/logout`,
-            type: 'GET',
-            success: (response)=>{
-              console.log(response)
-            this.handleUpdateNews(response);
-            },
-            error: (response)=>{
-              console.log(response.responseText)
-            }
-        });
+      url: `/users/logout`,
+      type: 'GET',
+      success: (response)=>{
+        console.log(response)
+      this.handleUpdateNews(response);
+      },
+      error: (response)=>{
+        console.log(response.responseText)
+      }
+    });
   },
   render: function() {
     current_user= this.state.current_user
@@ -32,10 +32,10 @@ var App = React.createClass({
               <Link to={`/user/${current_user.id}`}>My profile</Link>
             </li>
             <li>
-              <Link to='/'>My friends</Link>
+              <Link to='/friends'>Friends</Link>
             </li>
             <li>
-              <Link to='/news'>News</Link>
+              <Link to='/'>News</Link>
             </li>
             <li>
               <Link to='/users'>Users</Link>

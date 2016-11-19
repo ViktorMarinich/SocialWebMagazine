@@ -89,7 +89,8 @@ class UsersController < ApplicationController
         def show
           @user = User.find(params[:id])
           render json: @user.to_json( :include => [{:friends => {:only => [:name,:email,:id,
-          :avatar]}}, :wall =>{:include=> :news}], :only => [:name,:email,:id,:avatar])
+          :avatar]}}, :wall =>{:include=>{ :news =>{:include => [{:user=>{:only => [:name,:email,:id,
+          :avatar]}}]}}}], :only => [:name,:email,:id,:avatar])
 #(:include => { :b => { :include => :c } })
 
         #  @friends = current_user.friends.order(:created_at).page(params[:page]).per(20)
