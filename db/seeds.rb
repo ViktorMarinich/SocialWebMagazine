@@ -26,11 +26,7 @@ Relationship.delete_all
 Friendship.delete_all
 User.delete_all
 99.times do |n|
-  if n<= 9
-User.create(name:"Mister#{n}", email: "#{n+1}@ukr.net", password: "aaaa",password_confirmation: "aaaa",avatar: Rails.root.join("public/user-images/#{n}.jpg").open)
-else
-  User.create(name:"Mister#{n}", email: "#{n+1}@ukr.net", password: "aaaa",password_confirmation: "aaaa")
-end
+User.create(name:"Mister#{n}", email: "#{n+1}@ukr.net", password: "aaaa",password_confirmation: "aaaa",avatar: Rails.root.join("public/user-images/#{rand(9)+1}.jpg").open)
 user= User.last
 Wall.create(user: user)
 end

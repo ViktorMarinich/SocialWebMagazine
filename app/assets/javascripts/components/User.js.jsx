@@ -81,14 +81,15 @@ var User = React.createClass({
   render(){
     var user = this.state.user
     var index = (user.id == current_user.id)? 2 : 0
-    friends = this.state.friends.map(function (friend){
+    friends = this.state.friends.map(function (friend,i){
       if (friend.id == current_user.id){
         index = 1 }
       else if(user.id == current_user.id) {
         index = 2
       }
+      if(i<8){
       return <Friendel key={friend.id} url={friend.avatar.url} id={friend.id} name={friend.name}/>
-    })
+    }})
     var add = ( index > 0) ? '':<button onClick={this.handleAdd}>Add to my friendlist</button>
     var remove= (index  == 1) ? <button onClick={this.handleRemove}>Remove from my friendlist</button> : ''
     var newsSorted = this.state.news.sort(  function(a, b) {
