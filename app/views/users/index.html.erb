@@ -2,6 +2,17 @@
 <% if user_signed_in? %>
 <%= react_router 'MyRoutes', 'HashLocation', { foo: 'Foo' }, { prerender_location: @location_path } %>
 <% else %>
+<div class="error">
+  <% if @user&&@user.errors.any? %>
+    <div class="align-center">
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
 <div class="flex-row-sing">
   <div class="">
     <h1 class="align-center">Sign in</h1>

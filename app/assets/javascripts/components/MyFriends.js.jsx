@@ -22,7 +22,10 @@ var MyFriends = React.createClass({
           </div>)
     })
     return (
-     <div className="border shadow margin-left">{friends}</div>
+     <div className="border shadow margin-left">
+       <h3 className="align-center">My friends</h3>
+       {friends}
+     </div>
     );
   }
 });

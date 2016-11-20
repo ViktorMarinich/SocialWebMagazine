@@ -1,6 +1,6 @@
 var User = React.createClass({
   getInitialState() {
-    return { user: [], friends:[],current_user: this.props.current_user, news: [],img: [] ,wall:[]}
+    return { user: [], friends:[],errors:[],current_user: this.props.current_user, news: [],img: [] ,wall:[]}
   },
   componentWillReceiveProps(nextProps) {
     $.getJSON(`/users/${nextProps.params.userId}.json`,(response) => {
@@ -38,12 +38,14 @@ var User = React.createClass({
       this.setState({ news: response.wall.news })})
   },
   handleUpdate(user) {
-    console.log(user)
+    console.log(user.avatar)
     $.ajax({
       url: `/users/${this.state.user.id}`,
       type: 'PATCH',
       data: { id: this.state.user.id, user: user},
-      success: (response)=>{this.handleUpdateNews(response);},
+      success: (response)=>{
+        this.handleUpdateNews(response);
+      },
     });
   },
   handleAddFriends(response){
@@ -78,7 +80,7 @@ var User = React.createClass({
   },
   render(){
     var user = this.state.user
-    var index = 0
+    var index = (user.id == current_user.id)? 2 : 0
     friends = this.state.friends.map(function (friend){
       if (friend.id == current_user.id){
         index = 1 }
@@ -108,10 +110,10 @@ var User = React.createClass({
                 {avatar}
               </div>
             </div>
-            <div className="friend-request border">
+            <div className="friend-request ">
               <p className='align-center'>{add}
               {remove}</p>
-          </div >
+            </div >
             <h1>Friends</h1>
               <div className='flex-box border'>{friends}</div>
           </div>
@@ -122,6 +124,8 @@ var User = React.createClass({
             <div>
               <Settings key={user.id} name={user.name} email={user.email} handleUpdate={this.handleUpdate}/>
             </div>
+          </div>
+          <div>
           </div>
           <h3 className='align-center'>Wall</h3>
             <div className="flex-row-sing new-news shadow border">

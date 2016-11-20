@@ -12,9 +12,9 @@ class SessionsController < ApplicationController
      if user && user.authenticate(params[:session][:password])
        sign_in user
        redirect_to root_path
-
     else
-      render :json => { :errors => 'failed' }, :status => 422
+      flash['error']="Invalid email or password"
+      redirect_to root_path
     end
  end
 

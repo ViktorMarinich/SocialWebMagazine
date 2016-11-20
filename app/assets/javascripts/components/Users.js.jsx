@@ -25,7 +25,10 @@ var Users = React.createClass({
         </div>)
   })
   return (
-   <div className="border shadow margin-left">{users}</div>
+   <div className="border shadow margin-left">
+     <h3 className="align-center">All Users</h3>
+     {users}
+   </div>
   );
   }
 });

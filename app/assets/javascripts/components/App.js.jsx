@@ -26,22 +26,26 @@ var App = React.createClass({
     current_user= this.state.current_user
     return (
       <div className='menu'>
-        <div className='menu-item border shadow'>
-          <ul>
-            <li>
-              <Link to={`/user/${current_user.id}`}>My profile</Link>
-            </li>
-            <li>
-              <Link to='/friends'>Friends</Link>
-            </li>
-            <li>
-              <Link to='/'>News</Link>
-            </li>
-            <li>
-              <Link to='/users'>Users</Link>
-            </li>
+        <div className='menu-item border shadow margin-left '>
+          <p className="align-center">
+          <div className="margin-left">
+          <div className="menu-el">
+            <Link to={`/user/${current_user.id}`}>My profile</Link>
+          </div>
+          <div className="menu-el">
+            <Link to='/friends'>Friends</Link>
+          </div>
+          <div className="menu-el">
+            <Link to='/'>News</Link>
+          </div>
+          <div className="menu-el">
+            <Link to='/users'>Users</Link>
+          </div>
+          <div className="menu-el">
             <a href='/users/logout'>Sign Out</a>
-          </ul>
+          </div>
+        </div>
+        </p>
         </div>
         <div className="menu-item-large">
           <RouteHandler current_user={current_user}/>

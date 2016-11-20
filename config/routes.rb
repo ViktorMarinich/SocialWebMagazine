@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'users#index'
 
   #
-  resources :users, defaults: {format: :json}
+  resources :users
   resources :news
 #  resources :news
   resources :relationships

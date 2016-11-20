@@ -29,6 +29,8 @@ class UsersController < ApplicationController
             if @user.save
               sign_in @user
               redirect_to root_path
+            else
+              render template: 'users/index'
             end
           end
           #respond_to do |format|
@@ -73,6 +75,9 @@ class UsersController < ApplicationController
               end
             end
           end
+       def update_attr(resource,params)
+         resource.update_without_password(params)
+       end
           #if @user.update_attributes(user_params)
           #  redirect_to  user_path(@user)
         #  else
@@ -125,8 +130,12 @@ class UsersController < ApplicationController
           @user= User.find(params[:id])
         end
 
-        def user_params
+        def u_params
           params.required(:user).permit(:name,:email, :password, :password_confirmation, :avatar)
+        end
+
+        def user_params
+          params.required(:user).permit(:name,:email, :avatar)
         end
 
 end

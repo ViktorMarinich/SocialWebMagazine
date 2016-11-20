@@ -20,6 +20,9 @@ img{display:block;}
 html, body {
   height: 100%;
 }
+body {
+  padding-bottom: 30px;
+}
 .margin-left{
   margin-left: 20px;
 }
@@ -27,27 +30,32 @@ html, body {
   height: 100%;
 }
 .menu {
- min-height: 500px;
+ min-height: 400px;
  width: 1100px;
  vertical-align: top;
 
 }
 .menu-item{
-  min-height: 500px;
+  min-height: 400px;
   width: 200px;
   display: inline-block;
   vertical-align: top;
   //background: grey;
 }
 .menu-item-medium{
-  min-height: 500px;
+  min-height: 400px;
   width: 300px;
   display: inline-block;
   vertical-align: top;
   //background: orange;
 }
+.menu-el{
+  font-size: 20px;
+  margin-top:5px;
+  margin-bottom: 5px;
+}
 .menu-item-large{
-  min-height: 500px;
+  min-height: 400px;
   display: inline-block;
   width: 800px;
   //background: #873338;
@@ -109,6 +117,12 @@ html, body {
   border-width: 1px;
   border-color: #bcbabb;
 }
+.align-left{
+  text-align: left;
+}
+.align-right{
+  text-align: right;
+}
 .borderTop{
   border-top-style: solid;
   border-top-width: 1px;
@@ -118,6 +132,11 @@ html, body {
   flex-direction: row;
   justify-content: flex-start;
   margin: 10px;
+}
+.error{
+  background-color: #a54f4c;
+  font-size: 14px;
+  color:white;
 }
 .friend-flex{
   display: flex;
@@ -152,7 +171,6 @@ html, body {
   word-wrap: break-word;
 }
 .friend-img {
-  margin-bottom: 20px;
   padding: 1px;
   border:1px solid #021a40;
   background-color: #e2e0d5;
