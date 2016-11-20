@@ -2,8 +2,8 @@
 <% if user_signed_in? %>
 <%= react_router 'MyRoutes', 'HashLocation', { foo: 'Foo' }, { prerender_location: @location_path } %>
 <% else %>
-<div class="inline-block width440"></div>
-  <div class="form width240 inline-block vertical-top">
+<div class="flex-row-sing">
+  <div class="">
     <h1 class="align-center">Sign in</h1>
     <%= form_for(:session, url: sessions_path, id: "new-form") do |f| %>
       <p><%= f.label :email %></br>
@@ -17,7 +17,7 @@
       </p>
     <% end %>
   </div>
-  <div class="form width240 inline-block vertical-top">
+  <div class="">
   <h1 class="align-center">Sign Up</h1>
     <div class="">
     <%= form_for User.new do |f|%>
@@ -33,11 +33,11 @@
       </p>
       <p>
         <%= f.label :password %></br>
-        <%= f.password_field :password, class: "form-control",size:"30", id: "password"%>
+        <%= f.password_field :password, class: "",size:"30", id: "password"%>
       </p>
       <p>
         <%= f.label :password_confirmation %></br>
-        <%= f.password_field :password_confirmation, class: "form-control",size:"30", id: "password_confirmation"%>
+        <%= f.password_field :password_confirmation, class: "",size:"30", id: "password_confirmation"%>
       </p>
 
        <p class="align-center">
@@ -45,5 +45,6 @@
         </p>
     <% end %>
     </div>
+  </div>
 </div>
 <%end %>

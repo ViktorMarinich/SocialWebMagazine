@@ -113,16 +113,20 @@ var User = React.createClass({
           </div>
         </div>
         <div className="menu-item-medium inline-block">
-          <div>Profile Info</div>
+          <h3 className='align-center'>Profile Info</h3>
           <div>
             <div>
               <Settings key={user.id} name={user.name} email={user.email} handleUpdate={this.handleUpdate}/>
             </div>
           </div>
-          <div>News</div>
-            <div>
-              <input ref='text' placeholder='Type yours comment' />
-              <button onClick={this.handleClick}>Submit</button>
+          <h3 className='align-center'>Wall</h3>
+            <div className="flex-row-sing new-news">
+              <div>
+                <textarea ref='text' placeholder='Type yours comment' cols='35' rows='2'/>
+                <div>
+                  <button onClick={this.handleClick}>Send</button>
+                </div>
+              </div>
             </div>
             <div >
               {news}
