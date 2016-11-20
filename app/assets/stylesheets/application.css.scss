@@ -20,6 +20,15 @@ img{display:block;}
 a{
   text-decoration: none;
 }
+a:hover {
+    color: hotpink;
+}
+a:link {
+    color: black;
+}
+a:visited {
+    color: black;
+}
 html, body {
   height: 100%;
 }

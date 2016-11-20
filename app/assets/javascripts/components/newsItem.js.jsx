@@ -7,8 +7,8 @@ var NewsItem = React.createClass({
       <div className="news ">
         <div className="news-flex-row border">
           <div className="news-flex-box image-box border ">
-              <img className="border" src={this.is_undefiend (this.props.url)} width='50' height='50'></img>
               <Link to={`/user/${this.is_undefiend (this.props.id)}`} >
+                <img className="border" src={this.is_undefiend (this.props.url)} width='50' height='50'></img>
                 <h5 className="noPaddingNoMargin "> {this.is_undefiend (this.props.name)}</h5></Link>
           </div>
           <div className='newsText'>
