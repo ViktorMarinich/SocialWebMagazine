@@ -61,6 +61,37 @@ html, body {
   align-content: stretch;
   justify-content:space-around;
 }
+.noPaddingNoMargin{
+  padding: 0;
+  margin: 0;
+}
+.news-flex-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.image-box{
+  margin:3px;
+}
+.newsText{
+  padding: 5px;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.border{
+  border-style: solid;
+  border-width: 1px;
+}
+.borderTop{
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+.news-flex-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 10px;
+}
 .friend {
   display: inline-block;
   padding: 2px;

@@ -1,19 +1,20 @@
 var NewsItem = React.createClass({
+  is_undefiend (el){
+   return (typeof el!='undefined')? el  : ""
+  },
   render: function() {
     return (
       <div className="news">
-        <div className="news-flex-box">
-          <div className="news-flex-row borderBot">
-            <img scr={this.props.img}></img>
-            <div className="news-flex-box">
-              <h3 className="noPaddingNoMargin">{this.props.name}</h3>
-              Image
-            </div>
+        <div className="news-flex-row border">
+          <div className="news-flex-box image-box border ">
+              <img className="border" src={this.is_undefiend (this.props.url)} width='50' height='50'></img>
+              <Link to={`/user/${this.is_undefiend (this.props.id)}`} >
+                <h5 className="noPaddingNoMargin "> {this.is_undefiend (this.props.name)}</h5></Link>
           </div>
-          <div className="news-flex-row">
+          <div className='newsText'>
             <h3 className="noPaddingNoMargin">{this.props.text}</h3>
           </div>
-        </div>
+         </div>
       </div>
     );
   }

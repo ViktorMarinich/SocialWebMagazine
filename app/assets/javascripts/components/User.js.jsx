@@ -18,9 +18,8 @@ var User = React.createClass({
        this.setState({ news: response.wall.news })});
   },
   handleSubmit(response) {
-    var news = this.state.news
-    news.push(response)
-    this.setState({news: news})
+    $.getJSON(`/users/${this.props.params.userId}.json`, (response) => {
+       this.setState({ news: response.wall.news })})
     this.refs.text.value=''
   },
   handleClick() {
@@ -34,8 +33,9 @@ var User = React.createClass({
     });
   },
   handleUpdateNews(response) {
-    var user = response
-    this.setState({user: user})
+    $.getJSON(`/users/${this.props.params.userId}.json`, (response) => {
+      this.setState({ user: response })
+      this.setState({ news: response.wall.news })})
   },
   handleUpdate(user) {
     console.log(user)
@@ -65,6 +65,9 @@ var User = React.createClass({
     var friends= this.state.friends.filter(function(friend){return friend.id!=response.user_id})
     this.setState({friends: friends})
   },
+  is_undefiend (el){
+   return (typeof el!='undefined')? el  : ""
+  },
   handleRemove(user) {
     console.log(user.target)
     $.ajax({
@@ -91,16 +94,14 @@ var User = React.createClass({
       if (a.id < b.id) { return 1; }
       return 0; })
     news =newsSorted.map( function (news) {
-      return <News key={news.id} id={news.user_id} user_name={news.user_name} text={news.text} />
+      return  <NewsItem key={news.id} id={news.user.id} name={news.user.name} text={news.text} url={news.user.avatar.url} />
+
     })
     var avatar = (typeof this.state.user.avatar!='undefined')? <img src={this.state.user.avatar.url} width='200' height='200'></img> : ""
     return(
       <div className="flex-box">
         <div className='menu-item-medium inline-block'>
-          <h1>Works or works {current_user.name}</h1>
           <div className='container'>
-            <div>{current_user.name}</div>
-              <div>{user.email}</div>
             <div>{user.name}</div>
             <div className="friend-img">
               {avatar}
