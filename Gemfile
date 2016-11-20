@@ -39,6 +39,10 @@ gem 'react-router-rails','0.13.3.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem "minitest-rails-capybara"
+  gem "capybara-webkit"
+  gem 'selenium-webdriver', '~> 2.53'
+  gem 'rails-controller-testing'
 end
 
 group :development do

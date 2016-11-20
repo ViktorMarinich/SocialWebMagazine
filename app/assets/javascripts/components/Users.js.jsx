@@ -16,10 +16,16 @@ var Users = React.createClass({
         <div key={user.id} className='friend-flex'>
           <div className="friends-box " >
             <div className="friend-flex-row border">
+              <Link to={`/user/${user.id}`}>
               <div className="news-flex-box image-box border ">
-                {(typeof user.avatar.url!='undefined')? <Link to={`/user/${user.id}`}><img  className="border" src={user.avatar.url} width='70' height='70'></img></Link>  : ""}
+                {(typeof user.avatar.url!='undefined')? <img  className="border" src={user.avatar.url} width='70' height='70'></img> : ""}
               </div>
-              <h2>{user.name}</h2>
+              </Link>
+              <h2>
+                <Link to={`/user/${user.id}`}>
+                  {user.name}
+                </Link>
+                </h2>
              </div>
           </div>
         </div>)

@@ -1,13 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  text: MyString
-  user_id: 
-  images: 
-  wall_id: 1
-
-two:
-  text: MyString
-  user_id: 
-  images: 
-  wall_id: 1
+<% 10.times do |n| %>
+news<%= n %>:
+  text: <%= "The user#{n}" %>
+  wall: one
+  user: user1
+<% end %>
+newstwo:
+  wall: two
+  user: user3
+newsthree:
+  wall: two
+  user: user4
