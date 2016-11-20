@@ -17,8 +17,14 @@
   background: red;
 }
 img{display:block;}
+a{
+  text-decoration: none;
+}
 html, body {
   height: 100%;
+}
+div{
+  background: white;
 }
 body {
   padding-bottom: 30px;

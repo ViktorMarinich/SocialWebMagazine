@@ -89,7 +89,7 @@ var User = React.createClass({
       }
       return <Friendel key={friend.id} url={friend.avatar.url} id={friend.id} name={friend.name}/>
     })
-    var add = ( index > 0) ? '':<button onClick={this.handleAdd}>Add to my friends</button>
+    var add = ( index > 0) ? '':<button onClick={this.handleAdd}>Add to my friendlist</button>
     var remove= (index  == 1) ? <button onClick={this.handleRemove}>Remove from my friendlist</button> : ''
     var newsSorted = this.state.news.sort(  function(a, b) {
       if (a.id > b.id) { return -1;}
@@ -122,7 +122,7 @@ var User = React.createClass({
           <h3 className='align-center'>Profile Info</h3>
           <div>
             <div>
-              <Settings key={user.id} name={user.name} email={user.email} handleUpdate={this.handleUpdate}/>
+              <Settings key={user.id} name={user.name} current_user={this.props.current_user} user={user.id} email={user.email} handleUpdate={this.handleUpdate}/>
             </div>
           </div>
           <div>

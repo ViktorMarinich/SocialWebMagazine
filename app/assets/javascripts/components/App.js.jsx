@@ -27,7 +27,7 @@ var App = React.createClass({
     return (
       <div className='menu'>
         <div className='menu-item border shadow margin-left '>
-          <p className="align-center">
+          <h5 className="align-center">
           <div className="margin-left">
           <div className="menu-el">
             <Link to={`/user/${current_user.id}`}>My profile</Link>
@@ -45,7 +45,7 @@ var App = React.createClass({
             <a href='/users/logout'>Sign Out</a>
           </div>
         </div>
-        </p>
+      </h5>
         </div>
         <div className="menu-item-large">
           <RouteHandler current_user={current_user}/>

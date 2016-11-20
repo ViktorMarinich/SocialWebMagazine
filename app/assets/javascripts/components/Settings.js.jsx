@@ -22,7 +22,7 @@ var Settings = React.createClass({
         <div className='profile-text border'>
           Email: {email}
         </div>
-        <button onClick={this.handleEdit}> {this.state.editable ? 'Save' : 'Edit' } </button>
+        {(this.props.current_user.id != this.props.user)? '':<button onClick={this.handleEdit}> {this.state.editable ? 'Save' : 'Edit' } </button>}
       </div>
     )
   }
