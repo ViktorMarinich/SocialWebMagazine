@@ -79,6 +79,9 @@ html, body {
 .image-box{
   margin:3px;
 }
+.padding{
+  padding: 10px;
+}
 .new-news{
   margin-top: 40px;
   margin-bottom: 40px;
@@ -88,12 +91,20 @@ html, body {
   margin-left: 15px;
   margin-top: 5px;
 }
+.profile-text{
+  margin-bottom: 10px;
+}
 .align-center{
   text-align: center;
+}
+.shadow {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  padding: 10px;
 }
 .border{
   border-style: solid;
   border-width: 1px;
+  border-color: #bcbabb;
 }
 .borderTop{
   border-top-style: solid;
@@ -114,13 +125,19 @@ html, body {
 .inline-block {
   display: inline-block;
 }
+.friend-request{
+  width: 230px;
+  padding: 5px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 .friend-name{
   margin: 0;
   width: 50px;
   word-wrap: break-word;
 }
 .friend-img {
-  margin:0;
+  margin-bottom: 20px;
   padding: 1px;
   border:1px solid #021a40;
   background-color: #e2e0d5;

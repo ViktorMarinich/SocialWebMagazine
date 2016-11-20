@@ -4,7 +4,7 @@ var NewsItem = React.createClass({
   },
   render: function() {
     return (
-      <div className="news">
+      <div className="news ">
         <div className="news-flex-row border">
           <div className="news-flex-box image-box border ">
               <img className="border" src={this.is_undefiend (this.props.url)} width='50' height='50'></img>

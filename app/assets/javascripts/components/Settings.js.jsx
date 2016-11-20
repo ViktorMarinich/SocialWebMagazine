@@ -12,13 +12,17 @@ var Settings = React.createClass({
     this.setState({ editable: !this.state.editable })
   },
   render() {
-    var name = this.state.editable ? <input type='text' ref='name' defaultValue={this.props.name} /> : <h3>{this.props.name}</h3>;
-    var email = this.state.editable ? <input type='text' ref='email' defaultValue={this.props.email} /> : <h3>{this.props.email}</h3>;
+    var name = this.state.editable ? <h4 className="noPaddingNoMargin"><input type='text'  ref='name' defaultValue={this.props.name} /></h4> : <h4 className="noPaddingNoMargin">{this.props.name}</h4>;
+    var email = this.state.editable ? <h4 className="noPaddingNoMargin"><input type='text'  ref='email' defaultValue={this.props.email} /></h4> : <h4 className="noPaddingNoMargin">{this.props.email}</h4>;
     return (
-      <div>
-        {name}
-        {email}
-        <button onClick={this.handleEdit}> {this.state.editable ? 'Submit' : 'Edit' } </button>
+      <div className="border padding shadow">
+        <div className='profile-text border'>
+          Name: {name}
+        </div>
+        <div className='profile-text border'>
+          Email: {email}
+        </div>
+        <button onClick={this.handleEdit}> {this.state.editable ? 'Save' : 'Edit' } </button>
       </div>
     )
   }

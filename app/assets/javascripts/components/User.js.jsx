@@ -100,19 +100,23 @@ var User = React.createClass({
     var avatar = (typeof this.state.user.avatar!='undefined')? <img src={this.state.user.avatar.url} width='200' height='200'></img> : ""
     return(
       <div className="flex-box">
-        <div className='menu-item-medium inline-block'>
+        <div className='menu-item-medium border shadow inline-block'>
           <div className='container'>
             <div>{user.name}</div>
-            <div className="friend-img">
-              {avatar}
+            <div >
+              <div className="friend-img shadow">
+                {avatar}
+              </div>
             </div>
-            {add}
-            {remove}
+            <div className="friend-request border">
+              <p className='align-center'>{add}
+              {remove}</p>
+          </div >
             <h1>Friends</h1>
-              <div className='flex-box'>{friends}</div>
+              <div className='flex-box border'>{friends}</div>
           </div>
         </div>
-        <div className="menu-item-medium inline-block">
+        <div className="menu-item-medium border shadow inline-block shadow">
           <h3 className='align-center'>Profile Info</h3>
           <div>
             <div>
@@ -120,15 +124,15 @@ var User = React.createClass({
             </div>
           </div>
           <h3 className='align-center'>Wall</h3>
-            <div className="flex-row-sing new-news">
-              <div>
-                <textarea ref='text' placeholder='Type yours comment' cols='35' rows='2'/>
+            <div className="flex-row-sing new-news shadow border">
+              <div className='padding'>
+                <textarea ref='text' placeholder='Type yours comment' cols='32' rows='2'/>
                 <div>
                   <button onClick={this.handleClick}>Send</button>
                 </div>
               </div>
             </div>
-            <div >
+            <div className='border shadow'>
               {news}
             </div>
         </div>

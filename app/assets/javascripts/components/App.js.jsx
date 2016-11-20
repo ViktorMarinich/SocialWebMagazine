@@ -26,7 +26,7 @@ var App = React.createClass({
     current_user= this.state.current_user
     return (
       <div className='menu'>
-        <div className='menu-item'>
+        <div className='menu-item border shadow'>
           <ul>
             <li>
               <Link to={`/user/${current_user.id}`}>My profile</Link>
